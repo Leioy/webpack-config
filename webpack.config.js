@@ -1,27 +1,27 @@
-const path = require("path")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const loaders = (...loaders) => [
   MiniCssExtractPlugin.loader,
   {
-    loader: "css-loader",
+    loader: 'css-loader',
     options: {
-      modules: "icss",
+      modules: 'icss',
     },
   },
   ...loaders,
 ]
 module.exports = {
-  mode: "production",
+  mode: 'production',
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" })],
+  plugins: [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })],
   output: {
-    filename: "[name].[contenthash].js",
+    filename: '[name].[contenthash].js',
   },
   module: {
     rules: [
@@ -29,14 +29,14 @@ module.exports = {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
         test: /\.s[ac]ss$/,
         exclude: /node_modules/,
         use: loaders({
-          loader: "sass-loader",
+          loader: 'sass-loader',
           options: {
             additionalData: `@import "@/scss-vars";`,
           },
@@ -45,7 +45,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: loaders({
-          loader: "less-loader",
+          loader: 'less-loader',
           options: {
             additionalData: `@import "@/less-vars";`,
           },
@@ -53,4 +53,5 @@ module.exports = {
       },
     ],
   },
+ 
 }
