@@ -1,4 +1,15 @@
 const path = require("path")
+
+const loaders = (...loaders) =>[
+	'style-loader',
+	{
+		loader: 'css-loader',
+		options: {
+			modules: 'icss'
+		}
+	},
+	...loaders
+]
 module.exports = {
   mode: "production",
   resolve: {
@@ -19,39 +30,21 @@ module.exports = {
 	    {
 				test: /\.s[ac]ss$/,
 		    exclude: /node_modules/,
-		    use: [
-					'style-loader',
-			    {
-						loader: 'css-loader',
-				    options: {
-							modules: 'icss'
-				    }
-			    },
-			    {
-						loader:'sass-loader',
-				    options: {
-					    additionalData: `@import "@/scss-vars";`,
-				    }
-			    },
-		    ]
+		    use:loaders({
+			    loader:'sass-loader',
+			    options: {
+				    additionalData: `@import "@/scss-vars";`,
+			    }
+		    }),
 	    },
 	    {
 				test: /\.less$/,
-		    use: [
-			    'style-loader',
-			    {
-				    loader: 'css-loader',
-				    options: {
-					    modules: 'icss'
-				    }
-			    },
-			    {
-				    loader:'less-loader',
-				    options: {
-					    additionalData: `@import "@/less-vars";`,
-				    }
-			    },
-		    ]
+		    use: loaders({
+			    loader:'less-loader',
+			    options: {
+				    additionalData: `@import "@/less-vars";`,
+			    }
+		    })
 	    }
     ],
   },
