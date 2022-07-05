@@ -6,6 +6,8 @@ import { JsxDemo } from "./jsx-demo"
 import { x } from "@/ts-demo"
 import { TsxDemo } from "./tsx-demo"
 
+import '@/scss-demo.scss'
+
 console.log(JsxDemo)
 console.log(x)
 console.log(TsxDemo)
