@@ -1,9 +1,9 @@
-import { a } from "./a"
+import { a } from "@/a"
 
 const b = import("./b")
 
 import { JsxDemo } from "./jsx-demo"
-import { x } from "./ts-demo"
+import { x } from "@/ts-demo"
 import { TsxDemo } from "./tsx-demo"
 
 console.log(JsxDemo)
