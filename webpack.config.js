@@ -21,7 +21,12 @@ module.exports = {
 		    exclude: /node_modules/,
 		    use: [
 					'style-loader',
-			    'css-loader',
+			    {
+						loader: 'css-loader',
+				    options: {
+							modules: 'icss'
+				    }
+			    },
 			    {
 						loader:'sass-loader',
 				    options: {
