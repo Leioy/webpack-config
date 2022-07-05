@@ -11,7 +11,9 @@ import vars from '@/scss-demo.scss'
 import '@/less-demo.less'
 import vars2 from '@/less-demo.less'
 import React from 'react'
+import { shared } from '@/shared'
 
+console.log(shared)
 console.log(React)
 console.log(JsxDemo)
 console.log(x)
