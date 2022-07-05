@@ -1,5 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const loaders = (...loaders) => [
   MiniCssExtractPlugin.loader,
@@ -13,13 +14,24 @@ const loaders = (...loaders) => [
 ]
 module.exports = {
   mode: 'production',
+  entry: {
+    index: './src/index.ts',
+    admin: './src/admin.js',
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins: [new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' })],
+  plugins: [
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'admin.html',
+      chunks: ['admin'],
+    }),
+  ],
   output: {
     filename: '[name].[contenthash].js',
   },
