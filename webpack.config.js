@@ -2,6 +2,8 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const {XPlugin}= require('./plugin')
+
 const loaders = (...loaders) => [
   MiniCssExtractPlugin.loader,
   {
@@ -31,6 +33,7 @@ module.exports = {
       filename: 'admin.html',
       chunks: ['admin'],
     }),
+	  new XPlugin()
   ],
   output: {
     filename: '[name].[contenthash].js',
